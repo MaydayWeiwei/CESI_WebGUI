@@ -10,19 +10,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import eu.telecom_bretagne.CESI.service.IGestionAgent;
+import eu.telecom_bretagne.CESI.service.IGestionEmploye;
 
 /**
  * Servlet implementation class CreationAgent
  */
-@WebServlet("/creer_agent")
-public class CreationAgent extends HttpServlet {
+@WebServlet("/creer_employe")
+public class CreationEmploye extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public CreationAgent() {
+	public CreationEmploye() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -30,12 +30,12 @@ public class CreationAgent extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String nom = request.getParameter("nom");
-		String departement_id = request.getParameter("departement_id");
+		String service_id = request.getParameter("service_id");
 		try {
 			InitialContext ctx = new InitialContext();
-			IGestionAgent gestionAgent = (IGestionAgent) ctx
-					.lookup(IGestionAgent.JNDI_NAME);
-			gestionAgent.creerAgent(nom, Integer.parseInt(departement_id));
+			IGestionEmploye gestionEmploye = (IGestionEmploye) ctx
+					.lookup(IGestionEmploye.JNDI_NAME);
+			gestionEmploye.creerEmploye(nom, Integer.parseInt(service_id));
 		} catch (NamingException e) {
 			throw new ServletException(e);
 		}

@@ -10,19 +10,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import eu.telecom_bretagne.CESI.service.IGestionAgent;
+import eu.telecom_bretagne.CESI.service.IGestionEmploye;
 
 /**
  * Servlet implementation class ModificationAgent
  */
-@WebServlet("/modifier_agent")
-public class ModificationAgent extends HttpServlet {
+@WebServlet("/modifier_employe")
+public class ModificationEmploye extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ModificationAgent() {
+	public ModificationEmploye() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -31,13 +31,13 @@ public class ModificationAgent extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		Integer id = Integer.parseInt(request.getParameter("id"));
 		String nom = request.getParameter("nom");
-		Integer departement_id = Integer.parseInt(request
-				.getParameter("departement_id"));
+		Integer service_id = Integer.parseInt(request
+				.getParameter("service_id"));
 		try {
 			InitialContext ctx = new InitialContext();
-			IGestionAgent gestionAgent = (IGestionAgent) ctx
-					.lookup(IGestionAgent.JNDI_NAME);
-			gestionAgent.modifierAgent(id, nom, departement_id);
+			IGestionEmploye gestionEmploye = (IGestionEmploye) ctx
+					.lookup(IGestionEmploye.JNDI_NAME);
+			gestionEmploye.modifierEmploye(id, nom, service_id);
 		} catch (NamingException e) {
 			throw new ServletException(e);
 		}
