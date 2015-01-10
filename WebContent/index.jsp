@@ -32,7 +32,7 @@
 			<tr>
 				<td><%=service.getId() %></td>
 
-				<td><a href="infos_employe.jsp?id=<%=service.getId()%>"><%=service.getNom()%></a>
+				<td><a href="infos_service.jsp?id=<%=service.getId()%>"><%=service.getNom()%></a>
 				</td>
 <%-- 				<td><%=service.getNom()%> (id: <%=service.getId()%>)</td> --%>
 				<td><a href="modifier_employe_form.jsp?id=<%=service.getId()%>">Modifier</a>
