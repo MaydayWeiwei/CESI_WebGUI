@@ -10,19 +10,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import eu.telecom_bretagne.CESI.service.IGestionEmploye;
+import eu.telecom_bretagne.CESI.service.IGestionService;
 
 /**
  * Servlet implementation class CreationAgent
  */
-@WebServlet("/creer_employe")
-public class CreationEmploye extends HttpServlet {
+@WebServlet("/creer_service")
+public class CreationService extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public CreationEmploye() {
+	public CreationService() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -30,12 +30,18 @@ public class CreationEmploye extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String nom = request.getParameter("nom");
-		String service_id = request.getParameter("service_id");
+		String responsable_id = request.getParameter("responsable_id");
+		String serviceRattache_id = request.getParameter("serviceRattache_id");
 		try {
 			InitialContext ctx = new InitialContext();
-			IGestionEmploye gestionEmploye = (IGestionEmploye) ctx
-					.lookup(IGestionEmploye.JNDI_NAME);
-			gestionEmploye.creerEmploye(nom, Integer.parseInt(service_id));
+			IGestionService gestionService = (IGestionService) ctx
+					.lookup(IGestionService.JNDI_NAME);
+			if("0".equals(serviceRattache_id)) {
+				gestionService.creerService(nom, Integer.parseInt(responsable_id));
+			}
+			else{
+				gestionService.creerService(nom, Integer.parseInt(responsable_id), Integer.parseInt(serviceRattache_id));
+			}
 		} catch (NamingException e) {
 			throw new ServletException(e);
 		}

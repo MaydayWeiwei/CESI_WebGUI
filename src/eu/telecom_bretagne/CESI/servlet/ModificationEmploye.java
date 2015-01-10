@@ -37,7 +37,7 @@ public class ModificationEmploye extends HttpServlet {
 			InitialContext ctx = new InitialContext();
 			IGestionEmploye gestionEmploye = (IGestionEmploye) ctx
 					.lookup(IGestionEmploye.JNDI_NAME);
-			gestionEmploye.modifierEmploye(id, nom, service_id);
+//			gestionEmploye.modifierEmploye(id, nom, service_id);
 		} catch (NamingException e) {
 			throw new ServletException(e);
 		}
