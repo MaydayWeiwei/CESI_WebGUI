@@ -26,6 +26,8 @@
 	}
 	boolean firstEmployeSelected = false;
 	boolean firstServiceSelected = false;
+	
+	String erreur = request.getParameter("erreur");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
@@ -36,6 +38,11 @@
 </head>
 <body>
 	<h1>Création d'un service</h1>
+	<% 
+	if(erreur != null) {
+	%>
+	<p><%=erreur %></p>
+	<%} %>
 	<form method="post" action="creer_service">
 		<table>
 			<tr>

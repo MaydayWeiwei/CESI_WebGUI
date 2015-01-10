@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import eu.telecom_bretagne.CESI.service.IGestionService;
+import eu.telecom_bretagne.CESI.data.model.Service;
 
 /**
  * Servlet implementation class CreationAgent
@@ -32,20 +33,27 @@ public class CreationService extends HttpServlet {
 		String nom = request.getParameter("nom");
 		String responsable_id = request.getParameter("responsable_id");
 		String serviceRattache_id = request.getParameter("serviceRattache_id");
+		Service service;
 		try {
 			InitialContext ctx = new InitialContext();
 			IGestionService gestionService = (IGestionService) ctx
 					.lookup(IGestionService.JNDI_NAME);
 			if("0".equals(serviceRattache_id)) {
-				gestionService.creerService(nom, Integer.parseInt(responsable_id));
+				service = gestionService.creerService(nom, Integer.parseInt(responsable_id));
 			}
 			else{
-				gestionService.creerService(nom, Integer.parseInt(responsable_id), Integer.parseInt(serviceRattache_id));
+				service = gestionService.creerService(nom, Integer.parseInt(responsable_id), Integer.parseInt(serviceRattache_id));
 			}
 		} catch (NamingException e) {
 			throw new ServletException(e);
 		}
-		response.sendRedirect("index.jsp");
+		
+		if(service == null){
+			response.sendRedirect("creer_service_form.jsp?erreur=Nom de service existant");
+		}
+		else{
+			response.sendRedirect("index.jsp");
+		}
 	}
 
 }
