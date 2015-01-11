@@ -24,6 +24,18 @@
 			<td><b>Prénom:</b></td>
 			<td><input type="text" name="prenom" value=""></td>
 		</tr>
+		<tr>
+			<td><b>Statut:</b></td>
+			<td><input type="text" name="statut" value=""></td>
+		</tr>
+		<tr>
+			<td><b>Date début:</b></td>
+			<td><input type="text" name="date_debut" value=""></td>
+		</tr>
+		<tr>
+			<td><b>Date fin:</b></td>
+			<td><input type="text" name="date_fin" value=""></td>
+		</tr>
 		</table>
 		<input type="submit">
 	</form>
